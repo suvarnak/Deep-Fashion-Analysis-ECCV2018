@@ -107,4 +107,4 @@ info_df = pd.merge(info_df, attr, on='image_name', how='inner')
 info_df = pd.merge(partition, info_df, on='image_name', how='inner')
 info_df = pd.merge(bbox, info_df, on='image_name', how='inner')
 
-info_df.to_csv(base_path + 'info.csv', index=False)
+info_df.to_csv('info.csv', index=False)

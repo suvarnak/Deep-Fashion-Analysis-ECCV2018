@@ -14,7 +14,7 @@ if __name__ == '__main__':
     if os.path.exists('models') is False:
         os.makedirs('models')
 
-    df = pd.read_csv(base_path + const.USE_CSV)
+    df = pd.read_csv(const.USE_CSV)
     train_df = df[df['evaluation_status'] == 'train']
     train_dataset = DeepFashionCAPDataset(train_df, mode=const.DATASET_PROC_METHOD_TRAIN)
     train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=const.BATCH_SIZE, shuffle=True, num_workers=4)
