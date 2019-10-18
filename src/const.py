@@ -26,7 +26,7 @@ if 'dlcs302-2' == _hostname:
     base_path = '/home/hzy/datasets/DeepFashion/Category and Attribute Prediction Benchmark/'
 else:
     base_path = '/home/dl/datasets/DeepFashion/Category and Attribute Prediction Benchmark/'
-base_path = "/content/gdrive/'My Drive'/'Category and Attribute Prediction Benchmark'"
+base_path = "/content/gdrive/My Drive/Category and Attribute Prediction Benchmark/"
 NUM_EPOCH = 20
 LEARNING_RATE = 0.0001
 LEARNING_RATE_DECAY = 0.9
