@@ -96,10 +96,11 @@ print("landmark dataframe created")
 # attribute
 attr = pd.read_csv(base_path + 'Anno/list_attr_img.txt', skiprows=2, sep='\s+', names=['image_name'] + ['attr_%d' % i for i in range(1000)])
 attr.replace(-1, 0, inplace=True)
-print("attribued csv processed")
+print("attribute csv processed")
 
 # bbox
 bbox = pd.read_csv(base_path + 'Anno/list_bbox.txt', skiprows=1, sep='\s+')
+print("list bbox csv loaded")
 
 # merge all information
 assert (category['category_type'] == landmarks['clothes_type']).all()
@@ -107,10 +108,12 @@ landmarks = landmarks.drop('clothes_type', axis=1)
 category['category_type'] = category['category_type'] - 1  # 0-based
 category['category_label'] = category['category_label'] - 1  # 0-based
 info_df = pd.merge(category, landmarks, on='image_name', how='inner')
+print("category landmark merged")
 info_df = pd.merge(info_df, attr, on='image_name', how='inner')
+print("attribute merged")
 info_df = pd.merge(partition, info_df, on='image_name', how='inner')
+print("partition csv merged")
 info_df = pd.merge(bbox, info_df, on='image_name', how='inner')
-print("info csv merged")
-
+print("bbox csv merged")
 info_df.to_csv('info.csv', index=False)
 print("info csv saved")
