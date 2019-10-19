@@ -11,6 +11,7 @@ category = pd.read_csv(
     base_path + 'Anno/list_category_img.txt', skiprows=1, sep='\s+')
 category_type = pd.read_csv(
     base_path + 'Anno/list_category_cloth.txt', skiprows=1, sep='\s+')
+print("category csv loaded")
 category_type['category_label'] = range(1, len(category_type) + 1)
 category = pd.merge(category, category_type, on='category_label')
 
@@ -67,6 +68,7 @@ with open(base_path + 'Anno/list_landmarks.txt') as f:
         line_value.extend(landmark_visibilities)
         line_value.extend(landmark_in_pic)
         values.append(line_value)
+print("landmark csv processed")
 
 name = ['image_name', 'clothes_type']
 name.extend(['lm_lc_x', 'lm_lc_y', 'lm_rc_x', 'lm_rc_y',
@@ -89,10 +91,12 @@ name.extend([
 ])
 
 landmarks = pd.DataFrame(values, columns=name)
+print("landmark dataframe created")
 
 # attribute
 attr = pd.read_csv(base_path + 'Anno/list_attr_img.txt', skiprows=2, sep='\s+', names=['image_name'] + ['attr_%d' % i for i in range(1000)])
 attr.replace(-1, 0, inplace=True)
+print("attribued csv processed")
 
 # bbox
 bbox = pd.read_csv(base_path + 'Anno/list_bbox.txt', skiprows=1, sep='\s+')
@@ -106,5 +110,7 @@ info_df = pd.merge(category, landmarks, on='image_name', how='inner')
 info_df = pd.merge(info_df, attr, on='image_name', how='inner')
 info_df = pd.merge(partition, info_df, on='image_name', how='inner')
 info_df = pd.merge(bbox, info_df, on='image_name', how='inner')
+print("info csv merged")
 
 info_df.to_csv('info.csv', index=False)
+print("info csv saved")
