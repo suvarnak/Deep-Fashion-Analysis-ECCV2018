@@ -2,6 +2,7 @@ import torch
 import torch.utils.data
 from src.const import base_path
 import numpy as np
+import numpy.matlib
 from torchvision import transforms
 import matplotlib.pyplot as plt
 from skimage import io, transform
