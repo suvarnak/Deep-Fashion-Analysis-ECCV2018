@@ -66,7 +66,7 @@ if __name__ == '__main__':
             if (i + 1) % 100 == 0:
                 print('Saving Model....')
                 net.set_buffer('step', step)
-                torch.save(net.state_dict(), 'models/' + const.MODEL_NAME)
+                torch.save(net.state_dict(), '/content/gdrive/Apparels/models/' + const.MODEL_NAME)
                 print('OK.')
                 if const.VAL_WHILE_TRAIN:
                     print('Now Evaluate..')
