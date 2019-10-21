@@ -29,7 +29,7 @@ else:
 img_base_path = "/content/gdrive/My Drive/Category and Attribute Prediction Benchmark/"
 base_path = "/content/"
 
-NUM_EPOCH = 5
+NUM_EPOCH = 1
 LEARNING_RATE = 0.0001
 LEARNING_RATE_DECAY = 0.9
 BATCH_SIZE = 16

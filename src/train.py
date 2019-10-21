@@ -63,7 +63,7 @@ if __name__ == '__main__':
                 writer.add_scalar('global/learning_rate', learning_rate, step)
                 print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
                       .format(epoch + 1, const.NUM_EPOCH, i + 1, total_step, loss['all'].item()))
-            if (i + 1) % 100 == 0:
+            if (i + 1) % 20 == 0:
                 print('Saving Model....')
                 net.set_buffer('step', step)
                 torch.save(net.state_dict(), 'models/' + const.MODEL_NAME)
@@ -78,7 +78,7 @@ if __name__ == '__main__':
                                 sample[key] = sample[key].to(const.device)
                             output = net(sample)
                             evaluator.add(output, sample)
-                            if (j + 1) % 100 == 0:
+                            if (j + 1) % 20 == 0:
                                 print('Val Step [{}/{}]'.format(j + 1, val_step))
                         ret = evaluator.evaluate()
                         for topk, accuracy in ret['category_accuracy_topk'].items():
