@@ -7,7 +7,7 @@ from torchvision import transforms
 import matplotlib.pyplot as plt
 from skimage import io, transform
 from src import const
-
+import os
 
 def gaussian_map(image_w, image_h, center_x, center_y, R):
     Gauss_map = np.zeros((image_h, image_w))
@@ -239,7 +239,9 @@ class DeepFashionCAPDataset(torch.utils.data.Dataset):
 
     def __getitem__(self, i):
         sample = self.df.iloc[i]
-        image = io.imread(base_path + sample['image_name'])
+				file_location = sample['image_name']
+				file_name = os.path.basename(file_location) 
+        image = io.imread(base_path + file_name)
         category_label = sample['category_label']
         landmark_vis = sample.filter(regex='lm.*vis').astype(np.int64).values
         landmark_in_pic = sample.filter(regex='lm.*in_pic').astype(np.int64).values
