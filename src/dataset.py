@@ -241,6 +241,7 @@ class DeepFashionCAPDataset(torch.utils.data.Dataset):
         sample = self.df.iloc[i]
         file_location = sample['image_name']
         file_name = os.path.basename(file_location) 
+        print(file_name)
         image = io.imread(base_path + file_name)
         category_label = sample['category_label']
         landmark_vis = sample.filter(regex='lm.*vis').astype(np.int64).values
