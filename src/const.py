@@ -1,10 +1,11 @@
 import time
 import torch
 import socket as _socket
+import os
 
 _hostname = str(_socket.gethostname())
 
-name = time.strftime('%m-%d %H:%M:%S', time.localtime())
+name = time.strftime('%m_%d_%H:%M:%S', time.localtime())
 
 
 USE_NET = 'VGG16'
@@ -26,8 +27,11 @@ if 'dlcs302-2' == _hostname:
     base_path = '/home/hzy/datasets/DeepFashion/Category and Attribute Prediction Benchmark/'
 else:
     base_path = '/home/dl/datasets/DeepFashion/Category and Attribute Prediction Benchmark/'
-img_base_path = "/content/gdrive/My Drive/Category and Attribute Prediction Benchmark/"
-base_path = "/content/gdrive/My Drive/Apparels/img/"
+
+#dataset_root = "/content/gdrive/"
+dataset_root = "D:\\projects\\fashion\\sub_dataset\\"
+annotations_base_path = os.path.join(dataset_root,"Category and Attribute Prediction Benchmark/")
+base_path = os.path.join("D:\\phd\\experiments\\image_datasets\\deep_fashion\\")
 
 NUM_EPOCH = 1
 LEARNING_RATE = 0.0001

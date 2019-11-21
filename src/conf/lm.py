@@ -27,8 +27,8 @@ WEIGHT_LOSS_LM_POS = 10
 #################
 
 # auto
-TRAIN_DIR = 'runs/%s/' % _name + _time
-VAL_DIR = 'runs/%s/' % _name + _time
+TRAIN_DIR = 'runs/%s/' % _name #+ _time
+VAL_DIR = 'runs/%s/' % _name #+ _time
 
 MODEL_NAME = '%s.pkl' % _name
 #############

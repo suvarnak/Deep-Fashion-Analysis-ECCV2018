@@ -51,7 +51,6 @@ class Rescale(object):
 
     def __call__(self, image, landmarks):
         h, w = image.shape[:2]
-        print(h,'   ',w)
         if isinstance(self.output_size, int):
             if h > w:
                 new_h, new_w = self.output_size * h / w, self.output_size
@@ -59,9 +58,7 @@ class Rescale(object):
                 new_h, new_w = self.output_size, self.output_size * w / h
         else:
             new_h, new_w = self.output_size
-        print(new_h,'   ',new_w)
         new_h, new_w = int(new_h), int(new_w)
-
         img = transform.resize(image, (new_h, new_w), mode='constant')
 
         # h and w are swapped for landmarks because for images,
@@ -243,7 +240,7 @@ class DeepFashionCAPDataset(torch.utils.data.Dataset):
         file_location = sample['image_name']
         file_name = os.path.basename(file_location) 
         print(file_name)
-        image = io.imread(base_path + file_name)
+        image = io.imread(base_path + file_location)
         category_label = sample['category_label']
         landmark_vis = sample.filter(regex='lm.*vis').astype(np.int64).values
         landmark_in_pic = sample.filter(regex='lm.*in_pic').astype(np.int64).values
@@ -275,7 +272,8 @@ class DeepFashionCAPDataset(torch.utils.data.Dataset):
         image = image.copy()
 
         image = self.to_tensor(image)
-        image = self.normalize(image)
+        test_tensor = image.type(torch.FloatTensor)
+        image = self.normalize(test_tensor)
         image = image.float()
 
         ret = {}
