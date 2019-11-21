@@ -51,7 +51,7 @@ class Rescale(object):
 
     def __call__(self, image, landmarks):
         h, w = image.shape[:2]
-				print(h,'   ',w)
+        print(h,'   ',w)
         if isinstance(self.output_size, int):
             if h > w:
                 new_h, new_w = self.output_size * h / w, self.output_size
@@ -59,7 +59,7 @@ class Rescale(object):
                 new_h, new_w = self.output_size, self.output_size * w / h
         else:
             new_h, new_w = self.output_size
-				print(new_h,'   ',new_w)
+        print(new_h,'   ',new_w)
         new_h, new_w = int(new_h), int(new_w)
 
         img = transform.resize(image, (new_h, new_w), mode='constant')
