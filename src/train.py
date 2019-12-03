@@ -7,6 +7,7 @@ from src import const
 from src.utils import parse_args_and_merge_const
 from tensorboardX import SummaryWriter
 import os
+from builtins import str
 
 
 if __name__ == '__main__':
@@ -67,7 +68,7 @@ if __name__ == '__main__':
                 print('Saving Model....')
                 net.set_buffer('step', step)
                 torch.save(net.state_dict(), 'models/' + const.MODEL_NAME)
-                torch.save(net,'models/' + + 'full_'+i+'_'+const.MODEL_NAME )
+                torch.save(net,'models/' + 'full_'+ str(i)+'_'+const.MODEL_NAME )
                 print('OK.')
                 if const.VAL_WHILE_TRAIN:
                     print('Now Evaluate..')
